@@ -11,13 +11,33 @@ type Process struct {
 	ServiceTime int    // 要求服务时间
 }
 
-func main() {
+/*
 	processes := []Process{
 		{"A", 0, 3},
 		{"B", 2, 6},
 		{"C", 4, 4},
 		{"D", 6, 5},
 		{"E", 8, 2},
+	}
+*/
+
+func main() {
+	// 读取用户输入的进程列表
+	var n int
+	fmt.Println("请输入进程列表长度：")
+	fmt.Scan(&n)
+	processes := make([]Process, n)
+	fmt.Println("请输入进程信息：")
+	for i := 0; i < n; i++ {
+		var id string
+		var arrivalTime, serviceTime int
+		fmt.Printf("请输入第 %d 个进程的 ID：", i+1)
+		fmt.Scan(&id)
+		fmt.Printf("请输入第 %d 个进程的到达时间：", i+1)
+		fmt.Scan(&arrivalTime)
+		fmt.Printf("请输入第 %d 个进程的要求服务时间：", i+1)
+		fmt.Scan(&serviceTime)
+		processes[i] = Process{id, arrivalTime, serviceTime}
 	}
 
 	fmt.Println("FCFS:")

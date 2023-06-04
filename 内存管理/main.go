@@ -5,9 +5,20 @@ import (
 )
 
 func main() {
-	// 初始化页面引用序列和页帧数
-	refs := []int{7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1}
-	frames := 3
+	// 读取用户输入的页面引用序列和页帧数
+	var n, frames int
+	fmt.Println("请输入页面引用序列长度：")
+	// 例如 refs (20) 7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1
+	fmt.Scan(&n)
+	refs := make([]int, n)
+	fmt.Println("请输入页面引用序列：")
+	for i := 0; i < n; i++ {
+		fmt.Scan(&refs[i])
+	}
+	fmt.Println("请输入分配给进程的物理页面数目：")
+	// 例如 frames 3
+	fmt.Scan(&frames)
+
 	// 根据选择的算法，定义相应的缺页中断替换函数
 	mp := map[string]func([]int, []int, int) int{
 		"OPTIMAL": optimalReplacement,
