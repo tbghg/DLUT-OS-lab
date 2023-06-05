@@ -12,12 +12,9 @@ float Average(int a, int b, int c)
 
 int main(int argc, char* argv [])
 {
-	int x; 
-	int y; 
-	int z; 
-	x = atoi(argv[0]);
-	y = atoi(argv[1]);
-	z = atoi(argv[2]);
-	printf("The average is %f.\n\n", Average(x, y, z));
+	int x = atoi(argv[0]);
+	int y = atoi(argv[1]);
+	int z = atoi(argv[2]);
+	printf("Average(%d, %d, %d)，平均数为：%f \n",x ,y ,z ,Average(x, y, z));
 	return 0;
 }

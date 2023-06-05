@@ -12,55 +12,44 @@ int main()
 	int statu;
 	int p;
 	int i;
-	while(strcmp(name,"exit")!=0)
-	{
-		printf("Please input operation name:");
+	while(strcmp(name,"quit")!=0) {
+
+		printf("请输入要进行的方法(max/min/average/quit):");
 		scanf("%s",name);
 		
-		if(strcmp(name,"min")==0) 
-		{
+		if(strcmp(name,"min")==0) {
 			p = fork();
-			if(p == 0)
-			{
-				printf("please input two numbers:");
+			if(p == 0) {
+				printf("请输入两个数来比较大小:");
 				for(i=0; i<2; i++) 
 					scanf("%s",data[i]);
-				execl("./min3",data[0],data[1],NULL);
+				execl("./min",data[0],data[1],NULL);
 			}
 			pid = wait(&statu);
-		}
-		else if(strcmp(name,"max")==0) 
-		{
+		} else if(strcmp(name,"max")==0) {
 			p = fork();
 			if(p == 0)
 			{
-				printf("please input two numbers:");
+				printf("请输入两个数来比较大小:");
 				for(i=0; i<2; i++) 
 					scanf("%s",data[i]);
-				execl("./max3",data[0],data[1],NULL);
+				execl("./max",data[0],data[1],NULL);
 			}
 			pid = wait(&statu);
-		}
-		else if(strcmp(name,"average")==0) 
-		{
+		} else if(strcmp(name,"average")==0) {
 			p = fork();
-			if(p == 0)
-			{
-				printf("please input three numbers:");
+			if(p == 0) {
+				printf("请输入三个数来求平均值:");
 				for(i=0; i<3; i++) 
 					scanf("%s",data[i]);
-				execl("./average3",data[0],data[1],data[2],NULL);
+				execl("./average",data[0],data[1],data[2],NULL);
 			}
 			pid = wait(&statu);
-		}
-		else if(strcmp(name,"exit")==0)
-		{
-			printf("Exit\n");
+		} else if(strcmp(name,"quit")==0) {
+			printf("程序成功退出\n");
 			break;
-		}
-		else 
-		{
-			printf("Input Error\n");
+		} else {
+			printf("输入错误\n");
 			break;	
 		}
 	}
