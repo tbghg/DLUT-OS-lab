@@ -38,7 +38,7 @@ func main() {
 		fmt.Println("T0时刻不是安全状态")
 	}
 
-	fmt.Println("请输入进程P2请求的资源数：")
+	fmt.Println("请输入进程P2请求的资源数(A B C)：")
 	var m, n, p int
 	_, _ = fmt.Scan(&m, &n, &p)
 	req := Resource{m, n, p}
@@ -64,7 +64,8 @@ func isSafe() bool {
 		found := false
 		for i := range processes {
 			if !finish[i] && processes[i].Need.A <= work.A && processes[i].Need.B <= work.B && processes[i].Need.C <= work.C {
-				work.A += processes[i].Alloc.A // 分配资源
+				// 该进程可以完成，最终将已分配到该进程的资源释放
+				work.A += processes[i].Alloc.A
 				work.B += processes[i].Alloc.B
 				work.C += processes[i].Alloc.C
 				finish[i] = true // 标记进程已完成
@@ -95,7 +96,8 @@ func getSafeSeq() []int {
 		found := false
 		for i := range processes {
 			if !finish[i] && processes[i].Need.A <= work.A && processes[i].Need.B <= work.B && processes[i].Need.C <= work.C {
-				work.A += processes[i].Alloc.A // 分配资源
+				// 该进程可以完成，最终将已分配到该进程的资源释放
+				work.A += processes[i].Alloc.A
 				work.B += processes[i].Alloc.B
 				work.C += processes[i].Alloc.C
 				finish[i] = true   // 标记进程已完成
