@@ -4,6 +4,16 @@ import (
 	"fmt"
 )
 
+/*
+	3.2 编程实现银行家算法(10 分)
+		系统中有 3 种类型的资源(A，B，C)和 5 个进程 P1、 P2、P3、P4、P5，A 资源的数量为 17，B 资源的数量为 5，C 资源的数量为 20
+		在 T0 时刻系统状态见下表所示
+	编写一个图形界面程序，可以:
+	1. 判断T0时刻是否为安全状态?若是，请给出安全序列。
+	2. 在T0时刻，对进程P2请求资源(m，n，p)，m、n、p分别 是申请的 A、B、C 资源数(大于等于零的整型值，由程序提供接口， 让用户动态输入)
+	   程序可以判断是否能实施资源分配。
+*/
+
 // Resource 资源列表
 type Resource struct {
 	A int // 资源A的数量
@@ -20,8 +30,8 @@ type Process struct {
 }
 
 var (
-	available Resource  = Resource{17, 5, 20} // 系统可用资源
-	processes []Process = []Process{          // 进程列表
+	available = Resource{17, 5, 20} // 系统可用资源
+	processes = []Process{          // 进程列表
 		{Resource{5, 5, 9}, Resource{2, 1, 2}, Resource{3, 4, 7}, false},
 		{Resource{5, 3, 6}, Resource{4, 0, 2}, Resource{1, 3, 4}, false},
 		{Resource{4, 0, 11}, Resource{4, 0, 5}, Resource{0, 0, 6}, false},
