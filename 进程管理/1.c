@@ -18,12 +18,12 @@ int main(int argc, char *argv[])
 		int p2 = fork(); // 创建子进程p1
 		int statue;  // 收集进程退出时的一些状态
 		int ppid;
-		char* Argv[] = {"10", "20", NULL};
-		char* envp[] = {NULL};
+		char* Argv[] = {"10", "20"};
+		char* envp[] = {};
 		if(p2 == 0)
 		{
-			char* Argv[] = {"40", "30", NULL};
-			char* envp[] = {NULL};
+			char* Argv[] = {"40", "30"};
+			char* envp[] = {};
 			printf("子进程p2 pid：%d\n", getpid());
 			// p2执行自己独立的程序
 			execve("./min", Argv, envp);

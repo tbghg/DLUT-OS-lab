@@ -97,31 +97,22 @@ func scan(requests []DiskRequest, currentSector, maxRound int) {
 	fmt.Println("scan移臂总量:", totalMove)
 }
 
-/*
-	requests := []DiskRequest{
-		{10}, {7}, {30}, {20},
-		{15}, {25}, {8}, {31},
-	}
-	currentSector := 23 // 目前指针位置
-	maxRound := 49      // 磁盘最大磁道
-*/
-
 func main() {
 	// 读取用户输入的磁盘请求列表、当前指针位置和最大磁道数
 	var n, currentSector, maxRound int
-	fmt.Println("请输入磁盘请求列表长度：")
+	fmt.Println("请输入磁盘请求列表长度(例如 8)：")
 	fmt.Scan(&n)
 	requests := make([]DiskRequest, n)
-	fmt.Println("请输入磁盘请求列表：")
+	fmt.Println("请输入磁盘请求列表(例如 10 7 30 20 15 25 8 31)：")
 	for i := 0; i < n; i++ {
 		var sector int
 		fmt.Printf("请输入第 %d 个请求的磁道号：", i+1)
 		fmt.Scan(&sector)
 		requests[i] = DiskRequest{sector}
 	}
-	fmt.Println("请输入当前指针位置：")
+	fmt.Println("请输入当前指针位置(例如 23)：")
 	fmt.Scan(&currentSector)
-	fmt.Println("请输入最大磁道数：")
+	fmt.Println("请输入最大磁道数(例如 49)：")
 	fmt.Scan(&maxRound)
 
 	fmt.Println("sstf:")

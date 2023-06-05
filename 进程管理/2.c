@@ -13,18 +13,15 @@
 
 int main(int argc, char *argv[])
 {
-	int p1;
-	int p2;
-	int statu1; // 收集进程退出时的一些状态
-	int statu2;
-	int ppid1;
-	int ppid2;
-	
+	int p1, p2;
+	int statu1, statu2; // 收集进程退出时的一些状态
+	int ppid1, ppid2;
+
 	p1 = fork();  // 创建子进程
 	if(p1 == 0)
 	{
-		char* Argv[] = {"10", "20", NULL};
-		char* envp[] = {NULL};
+		char* Argv[] = {"10", "20"};
+		char* envp[] = {};
 		printf("子进程p1 pid：%d\n", getpid());
 		// p1执行自己独立的程序
 		execve("./max", Argv, envp);
@@ -33,8 +30,8 @@ int main(int argc, char *argv[])
 		p2 = fork();
 		if(p2 == 0)
 		{
-			char* Argv[] = {"30", "40", NULL};
-			char* envp[] = {NULL};
+			char* Argv[] = {"30", "40"};
+			char* envp[] = {};
 			printf("子进程p2 pid：%d\n", getpid());
 			// p2执行自己独立的程序
 			execve("./min", Argv, envp);

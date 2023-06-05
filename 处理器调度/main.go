@@ -60,7 +60,9 @@ func fcfs(processes []Process) {
 		weightedTurnaroundTime float64 // 带权周转时间
 		curTime                int     // 当前时间
 	)
-
+	sort.Slice(processes, func(i, j int) bool {
+		return processes[i].ArrivalTime < processes[j].ArrivalTime
+	})
 	for _, p := range processes {
 		waitTime := curTime - p.ArrivalTime // 等待时间 = 当前时间 - 到达时间
 		curTime += p.ServiceTime
@@ -130,6 +132,13 @@ func rr(processes []Process, quantum int) {
 		processQueue = processQueue[count:]
 		if !done {
 			queue = append(queue, p) // 把进程重新放回队尾
+		}
+		// 如果此时queue为0，判断processQueue中是否还有进程
+		if len(queue) == 0 && len(processQueue) != 0 {
+			curTime = p.ArrivalTime
+			p := processQueue[0]
+			processQueue = processQueue[1:]
+			queue = append(queue, p)
 		}
 	}
 }
